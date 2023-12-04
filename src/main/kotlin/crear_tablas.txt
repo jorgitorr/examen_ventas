@@ -1,0 +1,38 @@
+CREATE TABLE Productos (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    stock INT NOT NULL
+);
+
+CREATE TABLE Movimientos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR(10) NOT NULL,
+    monto DOUBLE NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Compras (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_producto INT NOT NULL,
+    cantidad INT NOT NULL,
+    precio_unitario DOUBLE NOT NULL,
+    total DOUBLE NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_producto) REFERENCES Productos(id)
+);
+
+CREATE TABLE Ventas (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_producto INT NOT NULL,
+    cantidad INT NOT NULL,
+    precio_unitario DOUBLE NOT NULL,
+    total DOUBLE NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_producto) REFERENCES Productos(id)
+);
+
+CREATE TABLE Saldo (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    importe DOUBLE NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
